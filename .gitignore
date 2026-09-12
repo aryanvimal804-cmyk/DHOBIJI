@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+coverage/
+*.log
+tunnel.log
+cloudflared.log
+.vscode/
+.DS_Store
+desktop.ini
