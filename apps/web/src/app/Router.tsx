@@ -29,11 +29,12 @@ import LaundryEarnings from '../features/laundry/Earnings';
 
 import DeliveryDashboard from '../features/delivery/Dashboard';
 import ActiveDelivery from '../features/delivery/ActiveDelivery';
+import LandingPage from '../features/public/LandingPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/customer/home" replace /> // Landing on Customer Home by default
+    element: <LandingPage /> // Premium Landing Page
   },
   {
     path: '/login',
