@@ -147,7 +147,7 @@ export default function LandingPage() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4 relative z-10">Ready for a laundry-free life?</h2>
-            <p className="text-blue-100 mb-8 max-w-xl mx-auto text-lg relative z-10">Join thousands of happy customers who have switched to DHOBIGO.</p>
+            <p className="text-blue-100 mb-8 max-w-xl mx-auto text-lg relative z-10">Join thousands of happy customers who have switched to DHOBIJI.</p>
             <Link to="/login" className="relative z-10">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 rounded-full px-8 font-bold shadow-lg">
                 Book Your First Pickup
@@ -162,7 +162,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <span className="font-bold text-2xl text-white tracking-tight">DHOBIGO</span>
+              <span className="font-bold text-2xl text-white tracking-tight">DHOBIJI</span>
             </div>
             <p className="max-w-xs text-sm">Making laundry day completely effortless for you and your family.</p>
           </div>
@@ -183,7 +183,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-sm text-center">
-          &copy; {new Date().getFullYear()} DHOBIGO. All rights reserved.
+          &copy; {new Date().getFullYear()} DHOBIJI. All rights reserved.
         </div>
       </footer>
     </div>
