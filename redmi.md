@@ -1,8 +1,8 @@
-🧺 DhobiGo
+🧺 DhobiJi
 
 Clean Clothes. Delivered.
 
-DhobiGo is a full-stack laundry marketplace platform that connects Customers, Laundry Partners, Delivery Partners, and Admins through one centralized system.
+DhobiJi is a full-stack laundry marketplace platform that connects Customers, Laundry Partners, Delivery Partners, and Admins through one centralized system.
 
 The platform supports:
 
@@ -41,7 +41,7 @@ Deployment: Production-ready architecture
 
 🏗️ System Architecture
 
-DhobiGo consists of four role-based experiences:
+DhobiJi consists of four role-based experiences:
 
                     ┌─────────────────────┐
                     │      CUSTOMER       │
@@ -51,7 +51,7 @@ DhobiGo consists of four role-based experiences:
                                ▼
                     ┌─────────────────────┐
                     │                     │
-                    │   DHOBIGO BACKEND   │
+                    │   DHOBIJI BACKEND   │
                     │ Node + Express + TS  │
                     │ REST API + Socket.IO │
                     │                     │
@@ -62,7 +62,7 @@ DhobiGo consists of four role-based experiences:
        ┌─────────────┐                   ┌──────────────┐
        │   MongoDB   │                   │ External APIs│
        │             │                   │ Maps/Payment │
-       └─────────────┘                   │ SMS/Storage  │
+       └─────────────┘                   �� SMS/Storage  │
                                          └──────────────┘
 
        ┌─────────────────┐        ┌──────────────────┐
@@ -87,7 +87,7 @@ Architecture.md
 
 👥 User Roles
 
-DhobiGo has four main roles.
+DhobiJi has four main roles.
 
 1. Customer
 
@@ -164,7 +164,7 @@ Route:
 
 4. Admin
 
-Admin controls the complete DhobiGo platform.
+Admin controls the complete DhobiJi platform.
 
 Admin can manage:
 
@@ -236,7 +236,7 @@ React Testing Library
 
 Recommended structure:
 
-dhobigo/
+dhobiji/
 │
 ├── apps/
 │   │
@@ -347,7 +347,7 @@ git --version
 Clone the project:
 
 git clone <YOUR_REPOSITORY_URL>
-cd dhobigo
+cd dhobiji
 
 Install dependencies:
 
@@ -375,7 +375,7 @@ NODE_ENV=development
 
 PORT=5000
 
-MONGODB_URI=mongodb://localhost:27017/dhobigo
+MONGODB_URI=mongodb://localhost:27017/dhobiji
 
 JWT_SECRET=replace_with_secure_secret
 JWT_REFRESH_SECRET=replace_with_secure_refresh_secret
@@ -404,7 +404,7 @@ Local MongoDB
 
 Start MongoDB locally and use:
 
-MONGODB_URI=mongodb://localhost:27017/dhobigo
+MONGODB_URI=mongodb://localhost:27017/dhobiji
 
 Docker
 
@@ -448,7 +448,7 @@ http://localhost:5000/api/v1
 
 🔑 Authentication
 
-DhobiGo uses role-based authentication.
+DhobiJi uses role-based authentication.
 
 Supported roles:
 
@@ -594,7 +594,7 @@ Delivery App
 Socket.IO
      │
      ▼
-DhobiGo Backend
+DhobiJi Backend
      │
      ├──────────► Customer
      │             │
@@ -629,7 +629,7 @@ Correct flow:
 
 Customer
  ↓
-DhobiGo Backend
+DhobiJi Backend
  ↓
 Payment Provider
  ↓
@@ -637,7 +637,7 @@ Customer Payment
  ↓
 Payment Provider Webhook
  ↓
-DhobiGo Backend
+DhobiJi Backend
  ↓
 Verify Webhook
  ↓
@@ -684,7 +684,7 @@ Laundry Service = ₹400
 
 Commission = 15%
 
-DhobiGo Commission = ₹60
+DhobiJi Commission = ₹60
 
 Laundry Payable = ₹340
 
@@ -712,7 +712,7 @@ The platform maintains separate financial ledgers.
 Laundry
 
 Gross Order
-- DhobiGo Commission
+- DhobiJi Commission
 - Refunds
 +/- Adjustments
 = Laundry Payable
@@ -724,7 +724,7 @@ Delivery Earnings
 - Adjustments
 = Delivery Payable
 
-DhobiGo
+DhobiJi
 
 Platform Commission
 + Delivery Margin
@@ -998,211 +998,4 @@ before modifying the project.
 Step 2
 
 Inspect the existing project structure.
-
-Do not overwrite working code unnecessarily.
-
-Step 3
-
-Create the project foundation first:
-
-React
-Vite
-TypeScript
-Node
-Express
-MongoDB
-Mongoose
-
-Step 4
-
-Implement authentication and roles before business modules.
-
-Step 5
-
-Implement modules one by one.
-
-Recommended order:
-
-Auth
- ↓
-Users
- ↓
-Laundry
- ↓
-Services
- ↓
-Orders
- ↓
-Delivery
- ↓
-Tracking
- ↓
-Payments
- ↓
-Commission
- ↓
-Settlements
- ↓
-Notifications
- ↓
-Admin
-
-Step 6
-
-After every major module:
-
-Run TypeScript check
-Run lint
-Run tests
-Build project
-
-Fix errors before continuing.
-
-Step 7
-
-Never create fake production functionality.
-
-For external services, create provider interfaces/adapters and use environment variables.
-
-Example:
-
-PaymentProvider
-MapProvider
-NotificationProvider
-StorageProvider
-
-This allows providers to be replaced later.
-
-Step 8
-
-Never hard-code:
-
-Commission
-Delivery Rates
-Payment Credentials
-Map Credentials
-Admin Credentials
-City
-Service Prices
-
-Configuration should come from database or environment configuration where appropriate.
-
----
-
-🧠 Business Rules
-
-Order
-
-Only valid order state transitions are allowed.
-
-Example:
-
-PLACED
- ↓
-ACCEPTED
- ↓
-PICKUP_ASSIGNED
- ↓
-PICKED_UP
- ↓
-PROCESSING
- ↓
-READY_FOR_DELIVERY
- ↓
-OUT_FOR_DELIVERY
- ↓
-DELIVERED
-
-Cancellation
-
-Cancellation rules must depend on order status.
-
-Example:
-
-Before Pickup → Customer cancellation allowed
-After Pickup → Restricted cancellation
-After Processing → Refund rules apply
-After Delivered → Cancellation unavailable
-
-Actual policies should be configurable.
-
----
-
-📱 Responsive Requirements
-
-Customer:
-
-Mobile-first
-
-Laundry:
-
-Mobile/tablet-first
-
-Delivery:
-
-Mobile-first
-
-Admin:
-
-Desktop/tablet-first
-
-All interfaces must remain usable on smaller screens.
-
----
-
-🚀 Production Checklist
-
-Before launch:
-
-- [ ] MongoDB production database configured
-- [ ] Production environment variables configured
-- [ ] HTTPS enabled
-- [ ] Payment provider configured
-- [ ] Payment webhook verified
-- [ ] Maps configured
-- [ ] Push notifications configured
-- [ ] SMS/OTP configured
-- [ ] Database indexes created
-- [ ] Authentication tested
-- [ ] Role authorization tested
-- [ ] GPS permissions tested
-- [ ] COD reconciliation tested
-- [ ] Commission tested
-- [ ] Settlement tested
-- [ ] Refund flow tested
-- [ ] Admin permissions tested
-- [ ] Error logging enabled
-- [ ] Database backup strategy configured
-- [ ] Frontend production build tested
-- [ ] Backend production build tested
-- [ ] Security audit completed
-
----
-
-📚 Documentation
-
-Additional documentation should live in:
-
-docs/
-├── Architecture.md
-├── API.md
-├── Database.md
-└── Deployment.md
-
-"Architecture.md" is the source of truth for the overall system architecture.
-
----
-
-📄 License
-
-Choose an appropriate license before public release.
-
-For a private commercial project, do not add an open-source license unless you intentionally want to grant those rights.
-
----
-
-🧺 DhobiGo
-
-Clean Clothes. Delivered.
-
-Build the platform incrementally, keep the architecture modular, protect financial and user data, and make every critical business operation verifiable from the backend.
+[...]
