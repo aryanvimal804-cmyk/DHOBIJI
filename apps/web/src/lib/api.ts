@@ -2,8 +2,9 @@ import axios from 'axios';
 
 // Determine API base URL: Use VITE_API_URL in production, fallback to hostname:5000 for local/mobile dev
 const getBaseUrl = () => {
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+  const envUrl = (import.meta as any).env?.VITE_API_URL;
+  if (envUrl) {
+    return envUrl;
   }
   return `http://${window.location.hostname}:5000/api/v1`;
 };
