@@ -10,6 +10,8 @@ export const connectDB = async () => {
       // Connect to actual Database (MongoDB Atlas)
       await mongoose.connect(mongoURI);
       console.log(`✅ Production MongoDB Connected`);
+      // Seed default laundries if database is empty
+      await seedDatabase();
     } else {
       // Spin up an in-memory MongoDB instance automatically for Dev
       const mongoServer = await MongoMemoryServer.create();
