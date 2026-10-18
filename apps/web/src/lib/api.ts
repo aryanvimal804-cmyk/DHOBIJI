@@ -1,9 +1,15 @@
 import axios from 'axios';
 
-// Create a configured Axios instance pointing to our Node.js backend
-// Using window.location.hostname allows testing on mobile devices via local IP
+// Determine API base URL: Use VITE_API_URL in production, fallback to hostname:5000 for local/mobile dev
+const getBaseUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  return `http://${window.location.hostname}:5000/api/v1`;
+};
+
 export const api = axios.create({
-  baseURL: `http://${window.location.hostname}:5000/api/v1`,
+  baseURL: getBaseUrl(),
   headers: {
     'Content-Type': 'application/json'
   }

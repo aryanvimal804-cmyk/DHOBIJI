@@ -11,3 +11,4 @@ cloudflared.log
 .vscode/
 .DS_Store
 desktop.ini
+*.zip

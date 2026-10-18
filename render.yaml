@@ -1,0 +1,33 @@
+services:
+  # ----------------------------------------
+  # 1. Backend API (Node.js + Express)
+  # ----------------------------------------
+  - type: web
+    name: dhobigo-api
+    runtime: node
+    rootDir: apps/api
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+
+  # ----------------------------------------
+  # 2. Frontend (React + Vite Static Site)
+  # ----------------------------------------
+  - type: web
+    name: dhobigo-web
+    runtime: static
+    rootDir: apps/web
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

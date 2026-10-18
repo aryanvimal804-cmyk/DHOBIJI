@@ -30,8 +30,8 @@ const startServer = async () => {
   await connectDB();
 
   // 2. Start HTTP & Socket Server
-  server.listen(PORT, () => {
-    console.log(`[SERVER] DhobiGo API is running on http://localhost:${PORT}`);
+  server.listen(Number(PORT), '0.0.0.0', () => {
+    console.log(`[SERVER] DhobiGo API is running on port ${PORT}`);
   });
 };
 

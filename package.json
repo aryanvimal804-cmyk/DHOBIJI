@@ -5,5 +5,13 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=dhobigo-web",
+    "build:web": "npm run build --workspace=dhobigo-web",
+    "build:api": "npm run build --workspace=dhobigo-api",
+    "start": "node apps/api/dist/server.js",
+    "start:web": "npm run dev --workspace=dhobigo-web",
+    "start:api": "npm run dev --workspace=dhobigo-api"
+  }
 }
