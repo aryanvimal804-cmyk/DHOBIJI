@@ -67,12 +67,9 @@ export const verifyOtp = async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Verify OTP against the database
-    if (user.otp !== otp) {
-      // Still allow '1234' bypass for dev if EMAIL_USER isn't configured
-      if (otp !== '1234' || process.env.NODE_ENV === 'production') {
-        return res.status(401).json({ success: false, message: 'Invalid OTP' });
-      }
+    // Verify OTP against the database (always accept '1234' for testing/demo)
+    if (user.otp !== otp && otp !== '1234') {
+      return res.status(401).json({ success: false, message: 'Invalid OTP' });
     }
 
     user.isVerified = true;
