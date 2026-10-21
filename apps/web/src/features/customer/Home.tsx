@@ -4,10 +4,16 @@ import { Card } from '../../components/ui/Card';
 import { CustomerAPI } from '../../lib/api';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
+import { useAddressStore } from '../../stores/addressStore';
+import AddressSelectorModal from '../../components/AddressSelectorModal';
 
 export default function CustomerHome() {
   const [laundries, setLaundries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+
+  const { getSelectedAddress } = useAddressStore();
+  const currentAddress = getSelectedAddress();
 
   useEffect(() => {
     // Fetch real data from backend
@@ -22,16 +28,34 @@ export default function CustomerHome() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      {/* Header / Location */}
+    <div className="space-y-6 pb-12">
+      {/* Header / Location Selector */}
       <div className="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-        <div>
-          <p className="text-xs text-gray-500 font-medium">Deliver to</p>
-          <p className="text-sm font-bold text-gray-800 flex items-center gap-1">
-            <span className="text-blue-600">📍</span> Home - Tech Park, Blr
-          </p>
-        </div>
-        <img src="https://i.pravatar.cc/150?img=68" alt="Profile" className="w-10 h-10 rounded-full border-2 border-blue-100" />
+        <button
+          type="button"
+          onClick={() => setIsAddressModalOpen(true)}
+          className="text-left group transition flex items-center gap-2 hover:opacity-80"
+        >
+          <div className="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
+            {currentAddress?.tag === 'Work' ? '🏢' : '📍'}
+          </div>
+          <div>
+            <p className="text-xs text-gray-500 font-medium">Deliver to</p>
+            <p className="text-sm font-bold text-gray-800 flex items-center gap-1 group-hover:text-blue-600">
+              <span>{currentAddress ? `${currentAddress.tag} - ${currentAddress.city}` : 'Add Delivery Address'}</span>
+              <span className="text-xs text-gray-400">▼</span>
+            </p>
+            {currentAddress && (
+              <p className="text-[11px] text-gray-400 line-clamp-1 max-w-[200px] sm:max-w-[320px]">
+                {currentAddress.houseNumber}, {currentAddress.street}
+              </p>
+            )}
+          </div>
+        </button>
+
+        <Link to="/customer/profile">
+          <img src="https://i.pravatar.cc/150?img=68" alt="Profile" className="w-10 h-10 rounded-full border-2 border-blue-100 hover:border-blue-500 transition" />
+        </Link>
       </div>
 
       {/* Search */}
@@ -117,6 +141,12 @@ export default function CustomerHome() {
           )}
         </div>
       </div>
+
+      {/* Address Selector Modal */}
+      <AddressSelectorModal
+        isOpen={isAddressModalOpen}
+        onClose={() => setIsAddressModalOpen(false)}
+      />
     </div>
   );
 }
